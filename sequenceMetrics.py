@@ -4,9 +4,6 @@
 Created on Tue Mar  8 13:32:00 2022
 
 @author: ckettlew
-
-
-these functions rely on event_series_thresh, xycom
 """
 
 import pandas as pd
@@ -14,9 +11,7 @@ import numpy as np
 from skimage import measure
 from scipy import ndimage
 from scipy.spatial.distance import cdist
-
 from spatialFilter import lowhigh_normalize
-
 
 
 def event_series_centermass(event_series, roi):
