@@ -1,5 +1,5 @@
 # Sequence Data
-In this project, the data was composed of previously processed spontaneous cortical activity in the developing visual cortex. Data was segmented into discrete segments, which are temporal series of arbitrary duration.
+In this project, the data was composed of previously processed spontaneous cortical activity in the developing visual cortex. Data was segmented into temporal series of arbitrary duration.
 
 ![Event examples](/imgs/events.png)
 *Stereotyped spatiotemporal dynamics of spontaneous activity in visual cortex prior to eye-opening.  
