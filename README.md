@@ -1,9 +1,12 @@
 # Sequence Data
 In this published work, the data was composed of previously processed spontaneous cortical activity in the developing visual cortex. Briefly, raw calcium imaging was z-scored (ΔF/F0), deconvolved using numerical differentiation, and segmented into temporal series of arbitrary duration.
 
-![Event examples](/imgs/events.png)
 *Stereotyped spatiotemporal dynamics of spontaneous activity in visual cortex prior to eye-opening.  
 Luna Kettlewell, et al. bioRxiv 2024.06.25.600611; doi: https://doi.org/10.1101/2024.06.25.600611* 
+
+![Event examples](/imgs/events.png)
+
+
 
 ## Sequence Class
 [/SequenceLoadingClass](https://github.com/LunaKet/SequenceDataClass/blob/master/SequenceLoadingClass.py)  
@@ -19,6 +22,8 @@ The underlying data is around 1 Terabyte per animal, so care was taken to load i
 ## Sequence Metrics and Greedy Groups
 [/SequenceMetrics](https://github.com/LunaKet/SequenceDataClass/blob/master/SequenceMetrics.py)  
 This script calculates many intermediary and key metrics for a sequence, allowing comparison across a range of durations.
+
+![Metrics examples](/imgs/seqMetrics.png)
 
 [/GreedyGroups](https://github.com/LunaKet/SequenceDataClass/blob/master/GreedyGroups.py)  
 This clusters the data according to a Greedy algorithm. It is based on sequence correlations, using a shuffled control to determine the threshold for a significantly correlated pair of sequences.
