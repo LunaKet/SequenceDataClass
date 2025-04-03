@@ -58,3 +58,13 @@ def lowhigh_normalize(frame, mask=None, sig_high=None, sig_low=None):
 	highlow_data = low_data - 1.*snd.gaussian_filter(low_data, sig_high, mode='constant', cval=0)/high_mask
 	highlow_data[np.logical_not(mask)] = np.nan
 	return highlow_data
+
+
+def flat2img(flatdata, roi, fill=0):
+    nFrames = flatdata.shape[1]
+    video = np.zeros((nFrames, *roi.shape), dtype='float')
+    video[:, :, :] = fill
+    for n in range(nFrames):
+        video[n, roi] = flatdata[:, n]
+
+    return video

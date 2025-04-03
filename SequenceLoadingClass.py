@@ -47,7 +47,7 @@ class Sequences():
     def summary(self):
         print(f'''
         ferret = {self.animalID}
-        fdir = {self.SeqFile.get_seq_data_file()}
+        fdir = {self.SeqFile}
         nSeqs = {len(self.Seqs[:])}
         nSeqsBin = {len(self.SeqsBin[:])}
               ''')
@@ -79,7 +79,7 @@ class Sequences():
         self.SeqsSF = SequenceSlices(sf)
 
     def _load_seqs(self):
-        with open(self.SeqFile.get_seq_data_file(), 'rb') as f:
+        with open(self.SeqFile, 'rb') as f:
             loaded_seq_data = pickle.load(f)
 
         self.roi = loaded_seq_data['roi']
@@ -104,8 +104,18 @@ class Sequences():
         self.nSeqs = len(self.Seqs[:])
         self.nFrames = self.Seqs.stack().shape[0]
         self._get_indexes()
-
-
+        
+    def save_seqs(self, fdir):
+        save_dict = {
+            'roi':self.roi,
+            'df':self.df,
+            'event_bin':self.SeqsBin[:],
+            'event_series':self.Seqs[:]
+            }
+        
+        with open(fdir, 'wb') as handle:
+            pickle.dump(save_dict, handle)
+       
 class SequenceSlices():
     '''
     provides intuitive interface for brackets, much like numpy
