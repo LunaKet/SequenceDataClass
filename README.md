@@ -15,6 +15,9 @@ One hurdle to analyzing this data was the arbitrary duration, where most data fe
 > seq_series = sequences.Seqs[[1,50,111,156,257,310,509]]  
 > seq_firstHundred = sequences.Seqs[0:100]
 
+Here is an interactive viewer for a subset of the sequences:  
+[Interactive Sequence Viewer](https://lunaket.github.io/SequenceDataClass/index.html)
+
 ## Sequence Loading
 [/SequenceLoadingFunctions](https://github.com/LunaKet/SequenceDataClass/blob/master/SequenceLoadingFunctions.py)  
 The underlying data is around 1 Terabyte per animal, so care was taken to load in data in batches and to minimize data in memory. That being said, the dataset *is* big and not easily accesbile, so for now this script is only a demonstration and cannot be run.
