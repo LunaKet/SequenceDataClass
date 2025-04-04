@@ -20,13 +20,15 @@ seqs = Sequences(fdir)
 seqs.removeSeqsThatDontPass(seqs.df.active_pix>500)
 x,y = flat2img(seqs.Seqs[0], seqs.roi).shape[1:]
 nFrames=6
-seqArray = np.zeros((seqs.nSeqs, nFrames, x, y))
-seqArray[:,:,:,:] = np.nan
+
 zmin = 0
-zmax = np.percentile(seqArray.flatten(), 99.9)
+zmax = np.percentile(seqs.Seqs.stack().flatten(), 99.9)
+fill = zmax*1.5
+seqArray = np.zeros((seqs.nSeqs, nFrames, x, y))
+seqArray[:,:,:,:] = fill
 
 for i in range(len(seqArray)):
-    seq_ = flat2img(seqs.Seqs[i], seqs.roi, fill=np.nan)
+    seq_ = flat2img(seqs.Seqs[i], seqs.roi, fill=fill)
     if len(seq_)<nFrames:
         seqArray[i,:len(seq_), :,:] = seq_
     else:
@@ -34,7 +36,8 @@ for i in range(len(seqArray)):
 
 labels = [i*20 for i in range(nFrames)]
 fig = px.imshow(seqArray, animation_frame=0, facet_col=1, facet_col_wrap=6,
-                zmin=zmin, zmax=zmax, color_continuous_scale='gray')
+                zmin=zmin, zmax=zmax, color_continuous_scale='gray',
+                binary_string=True)
 for i, label in enumerate(labels):
     fig.layout.annotations[i]['text'] = f'{label} ms'
 fig.update_xaxes(showticklabels=False)
@@ -51,6 +54,7 @@ app.layout = [
     # TODO! get a cleaned df to display underneath
               ]
 
+fig.write_html('docs/index.html')
 
 
 
